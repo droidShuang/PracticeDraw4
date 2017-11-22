@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -37,7 +39,10 @@ public class Practice01ClipRectView extends View {
 
         int left = (getWidth() - bitmap.getWidth()) / 2;
         int top = (getHeight() - bitmap.getHeight()) / 2;
-
+        canvas.save();
+        RectF clipRectf = new RectF(left + 20, top - 20, left + bitmap.getWidth() - 20, top + bitmap.getHeight() - 20);
+        canvas.clipRect(clipRectf);
         canvas.drawBitmap(bitmap, left, top, paint);
+        canvas.restore();
     }
 }
